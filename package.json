@@ -4,7 +4,19 @@
   "description": "The React client SDK for Fetch Forms",
   "author": "lukefrogger",
   "license": "UNLICENSED",
+  "keywords": [
+    "form builder",
+    "react",
+    "fetch forms",
+    "formik"
+  ],
   "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.11.4",
