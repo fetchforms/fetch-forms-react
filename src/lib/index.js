@@ -1,3 +1,3 @@
-import Button from './button';
+import FetchForm from './exports/FetchForm';
 
-export { Button };
+export { FetchForm };
