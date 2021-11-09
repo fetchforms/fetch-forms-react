@@ -14,7 +14,7 @@ const useFetchForms = (id, json) => {
       const endpoint = json ? `build/${id}` : `form/${id}`;
 
       try {
-        console.log('auth', token);
+        // console.log('auth', token);
 
         const resp = await window.fetch(`http://localhost:8081/${endpoint}`, {
           method: 'GET',
@@ -26,7 +26,7 @@ const useFetchForms = (id, json) => {
           body: JSON.stringify(json)
         });
         const temp = await resp.json();
-        console.log('form from hook', temp);
+        // console.log('form from hook', temp);
         if (resp.status !== 200 || !temp.success) {
           throw (
             temp.error ||

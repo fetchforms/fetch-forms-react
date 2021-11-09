@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useFetchForms from '../hooks/useFetchForms';
+import FetchFormItem from './form/FetchFormItem';
 
 const FetchForm = ({ slug }) => {
   const [form, loading, error] = useFetchForms(slug);
@@ -16,7 +17,10 @@ const FetchForm = ({ slug }) => {
         </div>
       )}
       {loading && 'Loading...'}
-      {form && JSON.stringify(form)}
+      {form &&
+        form.formItems.map((formItem) => (
+          <FetchFormItem formItem={formItem} key={formItem.name} />
+        ))}
     </div>
   );
 };
