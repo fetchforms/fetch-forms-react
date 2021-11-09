@@ -2,8 +2,16 @@ import React from 'react';
 import useFetchForms from '../hooks/useFetchForms';
 import FetchFormItem from './form/FetchFormItem';
 
-const FetchForm = ({ slug }) => {
+const FetchForm = ({ slug, onSubmit }) => {
   const [form, loading, error] = useFetchForms(slug);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('submit', e);
+    console.log('cloud save', form.cloudSave);
+
+    // onSubmit(e);
+  };
 
   return (
     <div className='fetch-form'>
@@ -17,10 +25,21 @@ const FetchForm = ({ slug }) => {
         </div>
       )}
       {loading && 'Loading...'}
-      {form &&
-        form.formItems.map((formItem) => (
-          <FetchFormItem formItem={formItem} key={formItem.name} />
-        ))}
+      {form && (
+        <form onSubmit={handleSubmit} noValidate>
+          {form.formItems.map((formItem) => (
+            <FetchFormItem formItem={formItem} key={formItem.name} />
+          ))}
+          <div className='mt-4'>
+            <button
+              type='submit'
+              className='text-white bg-brand focus:ring-4 rounded-lg px-5 py-2.5 text-center'
+            >
+              {form.submitText || 'Submit'}
+            </button>
+          </div>
+        </form>
+      )}
     </div>
   );
 };

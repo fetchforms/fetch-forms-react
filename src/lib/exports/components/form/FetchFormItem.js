@@ -11,8 +11,8 @@ const FetchFormItem = ({ formItem }) => {
           <label>{formItem.groupLabel}</label>
         </div>
       )}
-      {formItem.fields.map((field) => (
-        <FetchFormField fieldData={field} key={field.name} />
+      {formItem.fields.map((field, i) => (
+        <FetchFormField fieldData={field} key={`${field.name}+${i}`} />
       ))}
       {/* TODO: add validation here */}
     </div>

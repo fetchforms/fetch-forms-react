@@ -5,7 +5,7 @@ const TextField = ({ html, preload, options }) => {
     <select
       {...html}
       value={preload}
-      className={`form-input border border-gray-400 rounded-lg block w-full focus:ring-purple-500 focus:border-purple-500`}
+      className={`form-input border border-gray-400 rounded-lg block w-full focus:ring-blue-500 focus:border-blue-500`}
     >
       {options.map((option) => (
         <option key={option.value} value={option.value}>

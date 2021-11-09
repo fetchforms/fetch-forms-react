@@ -5,7 +5,7 @@ const TextareaField = ({ html, preload }) => {
     <textarea
       {...html}
       value={preload}
-      className='form-input border border-gray-400 rounded-lg block w-full placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500'
+      className='form-input border border-gray-400 rounded-lg block w-full placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500'
     ></textarea>
   );
 };
