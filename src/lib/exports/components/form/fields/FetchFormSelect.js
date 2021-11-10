@@ -8,7 +8,7 @@ const FetchFormSelect = ({ field }) => {
       <FetchLabel label={field.label} name={field.html.name} />
       <SelectField
         html={field.html}
-        preload={field.value}
+        initialValue={field.initialValue}
         options={field.options}
       />
     </>

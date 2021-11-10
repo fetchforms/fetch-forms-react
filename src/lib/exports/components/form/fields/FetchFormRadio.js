@@ -1,12 +1,12 @@
 import React from 'react';
-import CheckboxRadioField from '../elements/CheckboxRadioField';
+import RadioField from '../elements/RadioField';
 import FetchLabel from '../elements/FetchLabel';
 
-const FetchFormCheckboxRadio = ({ field }) => {
+const FetchFormCheckbox = ({ field }) => {
   return (
     <div className='flex items-start'>
       <div className='flex items-center h-5'>
-        <CheckboxRadioField html={field.html} checked={field.value} />
+        <RadioField html={field.html} />
       </div>
       <div className='ml-3'>
         <FetchLabel
@@ -19,4 +19,4 @@ const FetchFormCheckboxRadio = ({ field }) => {
   );
 };
 
-export default FetchFormCheckboxRadio;
+export default FetchFormCheckbox;

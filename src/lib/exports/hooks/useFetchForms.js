@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { usePermission } from '../../FetchFormsContext';
 
 const useFetchForms = (id, json) => {
-  const [form, setForm] = useState(null);
+  const [fetchForm, setFetchForm] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const token = usePermission();
@@ -35,11 +35,12 @@ const useFetchForms = (id, json) => {
           );
         }
 
-        setForm(temp.data);
+        setFetchForm(temp.data);
         setLoading(false);
         setError(false);
       } catch (err) {
         console.error(err);
+        setFetchForm({});
         setLoading(false);
         setError((err && err.message) || err);
       }
@@ -47,7 +48,7 @@ const useFetchForms = (id, json) => {
 
     unsubscribe();
   }, [id, json, token]);
-  return [form, loading, error];
+  return [fetchForm, loading, error];
 };
 
 export default useFetchForms;
