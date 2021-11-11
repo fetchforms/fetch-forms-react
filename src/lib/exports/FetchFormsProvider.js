@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 export const FormsContext = createContext({});
 
-export const FetchFormsPermission = ({ permission, children }) => {
+export const FetchFormsProvider = ({ permission, children }) => {
   const [token] = useState(permission);
 
   return (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { usePermission } from '../../FetchFormsContext';
+import { usePermission } from '../FetchFormsProvider';
 
 const useFetchForms = (id, json) => {
   const [fetchForm, setFetchForm] = useState(null);

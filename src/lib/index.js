@@ -1,3 +1,4 @@
 import FetchForm from './exports/components/FetchForm';
+import { FetchFormsProvider } from './exports/FetchFormsProvider';
 
-export { FetchForm };
+export { FetchForm, FetchFormsProvider };
