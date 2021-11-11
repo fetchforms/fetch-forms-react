@@ -1,15 +1,1 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "FetchForm", {
-  enumerable: true,
-  get: function get() {
-    return _FetchForm.default;
-  }
-});
-
-var _FetchForm = _interopRequireDefault(require("./exports/components/FetchForm"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+"use strict";var _FetchForm=_interopRequireDefault(require("./exports/components/FetchForm"));Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"FetchForm",{enumerable:!0,get:function get(){return _FetchForm.default}});function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}
