@@ -5,7 +5,6 @@ import FetchFormRadio from './fields/FetchFormRadio';
 import FetchFormSelect from './fields/FetchFormSelect';
 import FetchFormText from './fields/FetchFormText';
 import FetchFormTextarea from './fields/FetchFormTextarea';
-import { composeValidators, isRequired } from './Validations';
 
 const FetchFormItem = ({ formItem }) => {
   //   console.log('formData', formItem);
@@ -44,7 +43,6 @@ const FetchFormItem = ({ formItem }) => {
         <Field
           name={field.html.name}
           key={`${field.html.name}_${i}`}
-          validate={composeValidators(isRequired('Required'))}
           type={field.html.type}
           value={field.html.value}
         >
@@ -53,7 +51,9 @@ const FetchFormItem = ({ formItem }) => {
               {chooseField(field, input)}
               {isLastItem(i, formItem.fields.length) &&
                 meta.error &&
-                meta.touched && <div className='text-red'>{meta.error}</div>}
+                meta.touched && (
+                  <div className='mt-1 text-red-500'>{meta.error}</div>
+                )}
             </>
           )}
         </Field>

@@ -3,8 +3,11 @@ import { FetchFormsPermission } from '../lib/FetchFormsContext';
 import { FetchForm } from '../lib/index';
 
 const FullyManaged = () => {
-  const onSubmit = (values) => {
-    console.log(values);
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const onSubmit = async (values) => {
+    await sleep(1000);
+    console.log('return values', values);
   };
   return (
     <div className=''>
