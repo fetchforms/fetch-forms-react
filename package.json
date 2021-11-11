@@ -1,6 +1,6 @@
 {
   "name": "@fetchforms/react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The React client SDK for Fetch Forms",
   "author": "lukefrogger",
   "license": "UNLICENSED",
@@ -17,6 +17,10 @@
     "dist",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fetchforms/react-client.git"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@craco/craco": "^6.4.0",
