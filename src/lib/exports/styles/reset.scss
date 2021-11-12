@@ -1,80 +1,93 @@
 // Still working on form reset
+.fetch-form {
+    form {
+        [type='text'], [type='email'], [type='url'],
+        [type='password'], [type='number'], [type='date'], 
+        [type='datetime-local'], [type='month'], 
+        [type='search'], [type='tel'], [type='time'], 
+        [type='week'], [multiple], textarea, select {
+            appearance: none;
+            background-color: #fff;
+            border-style: solid;
+            border-color: $input-border;
+            border-width: 1px;
+            border-radius: $border-radius;
+            padding-top: 8px;
+            padding-right: 12px;
+            padding-bottom: 8px;
+            padding-left: 12px;
+            font-size: 16px;
+            line-height: 24px;
+            box-shadow: 0px 0px 0px 3px transparent;
+            transition: all .2s ease-out;
+            color: #333;
+            &:focus {
+                border: 1px solid $default-blue;
+                box-shadow: 0px 0px 0px 3px #3b82f636;
+            }
+            &:focus-visible {
+                outline: none;
+            }
+        }
 
-[type='text'], [type='email'], [type='url'],
-[type='password'], [type='number'], [type='date'], 
-[type='datetime-local'], [type='month'], 
-[type='search'], [type='tel'], [type='time'], 
-[type='week'], [multiple], textarea, select {
-    appearance: none;
-    background-color: #fff;
-    border-style: solid;
-    border-color: #9ca3af;
-    border-width: 1px;
-    border-radius: $border-radius;
-    padding-top: .5em;
-    padding-right: .75em;
-    padding-bottom: .5em;
-    padding-left: .75em;
-    font-size: 1em;
-    line-height: 1.5rem;
-    box-shadow: 0px 0px 0px 3px transparent;
-    transition: all .2s ease-out;
-    color: #333;
-    &:focus {
-        border: 1px solid $default-blue;
-        box-shadow: 0px 0px 0px 3px #3b82f636;
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 8px center;
+            background-repeat: no-repeat;
+            background-size: 24px 24px;
+            padding-right: 40px;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+            
+        [type='checkbox'], [type='radio'] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+            display: inline-block;
+            vertical-align: middle;
+            background-origin: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            flex-shrink: 0;
+            height: 16px;
+            width: 16px;
+            color: $default-blue;
+            background-color: #fff;
+            border-color: $input-border;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        [type='radio'] {
+            border-radius: 50%;
+        }
+
+        [type='checkbox']:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+        }
+
+        [type='radio']:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+        }
+
+        [type='checkbox']:checked, [type='radio']:checked {
+            background-color: currentColor;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        [type='checkbox']:focus, [type='radio']:focus {
+            outline-offset: 2px;
+            outline-style: solid;
+            outline-width: 2px;
+            outline-color: $default-blue;
+        }
+
     }
-    &:focus-visible {
-        outline: none;
-    }
-}
-    
-[type='checkbox'], [type='radio'] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding: 0;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
-    display: inline-block;
-    vertical-align: middle;
-    background-origin: border-box;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    flex-shrink: 0;
-    height: 1em;
-    width: 1em;
-    color: $default-blue;
-    background-color: #fff;
-    border-color: #9ca3af;
-    border-width: 1px;
-}
-
-[type='radio'] {
-    border-radius: 50%;
-}
-
-[type='checkbox']:checked {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
-}
-
-[type='radio']:checked {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
-}
-
-[type='checkbox']:checked, [type='radio']:checked {
-    border-color: transparent;
-    background-color: currentColor;
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-[type='checkbox']:focus, [type='radio']:focus {
-    outline-offset: 2px;
-    outline-style: solid;
-    outline-width: 2px;
-    outline-color: $default-blue;
 }
