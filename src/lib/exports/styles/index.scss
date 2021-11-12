@@ -13,6 +13,9 @@ $input-border: #9ca3af;
     display: block;
     position: relative;
     width: 100%;
+    * {
+        box-sizing: border-box;
+    }
 
     form {
         width: 100%;
@@ -62,6 +65,9 @@ $input-border: #9ca3af;
 
         .fetch-form-item {
             margin-bottom: 16px;
+            display: block;
+            position: relative;
+            width: 100%;
         }
 
         .fetch-error-msg {
