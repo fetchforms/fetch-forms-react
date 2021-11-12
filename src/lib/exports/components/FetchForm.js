@@ -9,6 +9,7 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
   const [fetchForm, loading, error] = useFetchForms(slug);
   const [validations, setValidations] = useState({});
   const [submitError, setSubmitError] = useState(false);
+  // const [submissionId, setSubmissionId] = useState(null);
 
   useEffect(() => {
     if (fetchForm) {
@@ -30,30 +31,29 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
   const submitForm = async (values) => {
     setSubmitError(false);
 
-    const formattedVals = {
+    const formattedValues = {
       ...values
     };
     const keys = Object.keys(values);
     for (let i = 0; i < keys.length; i++) {
       if (typeof values[keys[i]] !== 'boolean' && !isNaN(values[keys[i]])) {
-        formattedVals[keys[i]] = parseInt(values[keys[i]]);
+        formattedValues[keys[i]] = parseInt(values[keys[i]]);
       } else {
-        formattedVals[keys[i]] = values[keys[i]];
+        formattedValues[keys[i]] = values[keys[i]];
       }
     }
 
     // TODO: submit to fetch forms if cloudsave is enabled
-    // show submitError
-    return setSubmitError('Age requires a valid number to be set');
-    await onSubmit(formattedVals);
+    // return setSubmitError('Age requires a valid number to be set');
+    const hasError = await onSubmit(formattedValues);
+    if (hasError) {
+      setSubmitError(hasError);
+    }
   };
 
   const errorMessage = (message) => {
     return (
-      <div
-        className='fetch-alert text-red-700 px-4 py-3 rounded relative'
-        role='alert'
-      >
+      <div className='fetch-alert' role='alert'>
         <span className='block sm:inline'>{message}</span>
       </div>
     );

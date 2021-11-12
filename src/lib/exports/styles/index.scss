@@ -86,6 +86,8 @@ $font-size: 16px;
             border: 1px solid lighten($danger-primary, 20%);;
             color: $danger-primary;
             margin-bottom: 16px;
+            position: relative;
+            padding: 12px 16px;
         }
 
         .fetch-submit-button {
