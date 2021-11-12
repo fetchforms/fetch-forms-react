@@ -1,7 +1,7 @@
 import React from 'react';
 import { FetchForm, FetchFormsProvider } from '../lib/index';
 
-const FullyManaged = () => {
+const HookForm = () => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const onSubmit = async (values) => {
@@ -13,10 +13,10 @@ const FullyManaged = () => {
   return (
     <div className=''>
       <FetchFormsProvider permission='ad784124b18825b417ab71426f13f050'>
-        <div className='text-3xl'>Managed Form</div>
+        <div className='text-3xl'>Hook Form</div>
         <p className='text-gray-500'>
-          The easiest way to use Fetch Forms. Pass in a form slug and we'll do
-          the rest
+          Fetch a form with the useFetchForm hook and then construct your form
+          with custom components and layouts
         </p>
         <br />
         <div>
@@ -30,4 +30,4 @@ const FullyManaged = () => {
   );
 };
 
-export default FullyManaged;
+export default HookForm;
