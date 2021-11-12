@@ -34,9 +34,9 @@ const FetchFormItem = ({ formItem }) => {
   };
 
   return (
-    <div className='mt-4'>
+    <div className='fetch-form-item'>
       {formItem.fields.length > 1 && (
-        <div className='text-gray-800 mb-2'>{formItem.groupLabel}</div>
+        <div className='fetch-group-label'>{formItem.groupLabel}</div>
       )}
 
       {formItem.fields.map((field, i) => (
@@ -52,7 +52,7 @@ const FetchFormItem = ({ formItem }) => {
               {isLastItem(i, formItem.fields.length) &&
                 meta.error &&
                 meta.touched && (
-                  <div className='mt-1 text-red-500'>{meta.error}</div>
+                  <div className='fetch-error-msg'>{meta.error}</div>
                 )}
             </>
           )}

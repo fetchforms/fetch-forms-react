@@ -4,11 +4,11 @@ import FetchLabel from '../elements/FetchLabel';
 
 const FetchFormCheckbox = ({ field }) => {
   return (
-    <div className='flex items-start'>
-      <div className='flex items-center h-5'>
+    <div className='fetch-input-group'>
+      <div className='input-group-field'>
         <CheckboxField html={field.html} checked={field.initialValue} />
       </div>
-      <div className='ml-3'>
+      <div className='input-group-label'>
         <FetchLabel
           label={field.label}
           name={field.html.name}

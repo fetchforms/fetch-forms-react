@@ -1,0 +1,90 @@
+$border-radius: 8px;
+$default-blue: #3b82f6;
+$brand-purple: #8b15b8;
+$label-color: #1f2937;
+$danger-primary: #db1074;
+
+@import "reset";
+
+.fetch-form {
+    font-size: 16px;
+    text-align: left;
+
+    .fetch-group-label {
+        color: $label-color;
+        margin-bottom: .5em;
+    }
+
+    .fetch-label {
+        text-align: left;
+        color: $label-color;
+        margin-bottom: 4px;
+        display: block;
+        &.no-margin {
+            margin-bottom: 0;
+        }
+    }
+
+    input.fetch-input, select.fetch-input, textarea.fetch-input {
+        width: 100%;
+    }
+
+    input.fetch-checkbox {
+        border-radius: 4px;
+    }
+
+    .fetch-input-group {
+        display: flex;
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
+        margin-bottom: 2px;
+        .input-group-field {
+            display: flex;
+            align-items: center;
+        }
+        .input-group-label {
+            margin-left: .75em;
+        }
+    }
+
+    .fetch-form-item {
+        margin-bottom: 1rem;
+    }
+
+    .fetch-error-msg {
+        text-align: left;
+        color: $danger-primary;
+        margin-top: .25em;
+    }
+
+    .fetch-submit-button {
+        font-size: 1em;
+        padding: 0.625em 1.25em;
+        color: white;
+        background-color: $brand-purple;
+        cursor: pointer;
+        border-radius: $border-radius;
+        text-align: center;
+        box-shadow: 0px 0px 0px 3px transparent;
+        transition: all .2s ease-out;
+        border: 1px solid $brand-purple;
+
+        &:hover {
+           background-color: darken($brand-purple, 5%); 
+        }
+        &:disabled {
+            opacity: 50%;
+            cursor: not-allowed
+        }    
+        &:active {
+            box-shadow: 0px 0px 0px 3px #8b15b84f;
+        }
+        &:focus {
+            border: 1px solid $brand-purple;
+        }
+         &:focus-visible {
+            outline: none;
+        }
+    }
+}
