@@ -44,14 +44,14 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
 
     // TODO: submit to fetch forms if cloudsave is enabled
     // show submitError
-    // return setSubmitError('Age requires a valid number to be set');
+    return setSubmitError('Age requires a valid number to be set');
     await onSubmit(formattedVals);
   };
 
   const errorMessage = (message) => {
     return (
       <div
-        className='mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative'
+        className='fetch-alert text-red-700 px-4 py-3 rounded relative'
         role='alert'
       >
         <span className='block sm:inline'>{message}</span>
@@ -78,7 +78,7 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
               {submitError && errorMessage(submitError)}
               <button
                 type='submit'
-                className={`fetch-submit-button `}
+                className='fetch-submit-button'
                 disabled={submitting || invalid}
               >
                 {form.submitText || 'Submit'}
