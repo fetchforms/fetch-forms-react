@@ -2,12 +2,12 @@ import React from 'react';
 import SelectField from '../elements/SelectField';
 import FetchLabel from '../elements/FetchLabel';
 
-const FetchFormSelect = ({ field }) => {
+const FetchFormSelect = ({ field, html }) => {
   return (
     <>
-      <FetchLabel label={field.label} name={field.html.name} />
+      <FetchLabel label={field.label} name={field.name} />
       <SelectField
-        html={field.html}
+        html={html}
         initialValue={field.initialValue}
         options={field.options}
       />

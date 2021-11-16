@@ -7,18 +7,18 @@ const Layout = () => (
       <div className='h-48 bg-purple-500 '>
         <div className='container mx-auto max-w-4xl pt-12'>
           <div className='text-lg mb-2 text-white uppercase'>Form Examples</div>
-          <ul class='flex '>
-            <li class='mr-3'>
+          <ul className='flex '>
+            <li className='mr-3'>
               <Link
-                class='inline-block border border-white rounded py-1 px-3 text-white'
+                className='inline-block border border-white rounded py-1 px-3 text-white'
                 to='/'
               >
                 Managed Form
               </Link>
             </li>
-            <li class='mr-3'>
+            <li className='mr-3'>
               <Link
-                class='inline-block border border-white rounded py-1 px-3 text-white'
+                className='inline-block border border-white rounded py-1 px-3 text-white'
                 to='/hookForm'
               >
                 Hook Form

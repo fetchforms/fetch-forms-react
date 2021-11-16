@@ -72,8 +72,11 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
           }}
           render={({ handleSubmit, form, submitting, invalid }) => (
             <form onSubmit={handleSubmit} noValidate>
-              {fetchForm.formItems.map((formItem) => (
-                <FetchFormItem formItem={formItem} key={formItem.name} />
+              {fetchForm.formItems.map((formItem, i) => (
+                <FetchFormItem
+                  formItem={formItem}
+                  key={`${formItem.name}_${i}`}
+                />
               ))}
               {submitError && errorMessage(submitError)}
               <button

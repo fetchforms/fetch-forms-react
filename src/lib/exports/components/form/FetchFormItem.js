@@ -7,57 +7,46 @@ import FetchFormText from './fields/FetchFormText';
 import FetchFormTextarea from './fields/FetchFormTextarea';
 
 const FetchFormItem = ({ formItem }) => {
-  //   console.log('formData', formItem);
+  // console.log('formData', formItem);
 
   const chooseField = (field, input) => {
-    field.html = {
-      ...field.html,
+    const html = {
+      ...field.fieldHtml,
       ...input
     };
 
-    switch (field.html.type) {
+    switch (field.fieldType) {
       case 'select':
-        return <FetchFormSelect field={field} />;
+        return <FetchFormSelect field={field} html={html} />;
       case 'checkbox':
-        return <FetchFormCheckbox field={field} />;
+        return <FetchFormCheckbox field={field} html={html} />;
       case 'radio':
-        return <FetchFormRadio field={field} />;
+        return <FetchFormRadio field={field} html={html} />;
       case 'textarea':
-        return <FetchFormTextarea field={field} />;
+        return <FetchFormTextarea field={field} html={html} />;
       default:
-        return <FetchFormText field={field} />;
+        return <FetchFormText field={field} html={html} />;
     }
-  };
-
-  const isLastItem = (index, length) => {
-    return index === length - 1;
   };
 
   return (
     <div className='fetch-form-item'>
-      {formItem.fields.length > 1 && (
-        <div className='fetch-group-label'>{formItem.groupLabel}</div>
-      )}
-
-      {formItem.fields.map((field, i) => (
-        <Field
-          name={field.html.name}
-          key={`${field.html.name}_${i}`}
-          type={field.html.type}
-          value={field.html.value}
-        >
-          {({ input, meta }) => (
-            <>
-              {chooseField(field, input)}
-              {isLastItem(i, formItem.fields.length) &&
-                meta.error &&
-                meta.touched && (
-                  <div className='fetch-error-msg'>{meta.error}</div>
-                )}
-            </>
-          )}
-        </Field>
-      ))}
+      {/* {formItem.fields.map((field, i) => ( */}
+      <Field
+        name={formItem.name}
+        type={formItem.fieldType}
+        value={formItem.fieldHtml.value}
+      >
+        {({ input, meta }) => (
+          <>
+            {chooseField(formItem, input)}
+            {meta.error && meta.touched && (
+              <div className='fetch-error-msg'>{meta.error}</div>
+            )}
+          </>
+        )}
+      </Field>
+      {/* ))} */}
     </div>
   );
 };

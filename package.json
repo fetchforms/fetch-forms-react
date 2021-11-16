@@ -58,6 +58,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "antd": "^4.16.13",
     "autoprefixer": "^9.8.8",
     "babel-plugin-transform-scss": "^1.1.0",
     "babel-preset-minify": "^0.5.1",

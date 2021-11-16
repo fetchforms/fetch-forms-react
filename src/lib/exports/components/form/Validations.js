@@ -1,10 +1,18 @@
 export const hasValue = (value) => (value ? true : false);
 
-export const biggerThan = (min, value) =>
-  isNaN(value) || value >= min ? true : false;
+export const biggerThan = (min, value) => {
+  if (!value) {
+    return true;
+  }
+  return (isNaN(value) ? value.length : value) >= min ? true : false;
+};
 
-export const smallerTan = (max, value) =>
-  isNaN(value) || max >= value ? true : false;
+export const smallerTan = (max, value) => {
+  if (!value) {
+    return true;
+  }
+  return max >= (isNaN(value) ? value.length : value) ? true : false;
+};
 
 export const validRegex = (regex, value) => {
   const expression = new RegExp(regex);
@@ -14,9 +22,6 @@ export const validRegex = (regex, value) => {
 
   return expression.test(value);
 };
-
-const emailRegex =
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export const validate = (values, validation) => {
   const errors = {};
