@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Form } from 'react-final-form';
 import useFetchForms from '../hooks/useFetchForms';
 import FetchFormItem from './form/FetchFormItem';
-import { validate } from './form/Validations';
+import { validate } from '../scripts/Validations';
 import '../styles/index.scss';
-import useCloudSave from '../hooks/useCloudSave';
 
 const FetchForm = ({ slug, showFormError, onSubmit }) => {
-  const [fetchForm, loading, error] = useFetchForms(slug);
-  const { status, createSubmission } = useCloudSave();
+  const [fetchForm, loading, error, doCloudSubmit] = useFetchForms(slug);
   const [validations, setValidations] = useState({});
   const [submitError, setSubmitError] = useState(false);
 
@@ -43,17 +41,23 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
         formattedValues[keys[i]] = values[keys[i]];
       }
     }
+    console.log(formattedValues);
 
     if (fetchForm.cloudSave) {
-      await createSubmission(fetchForm.id, formattedValues);
-      if (status.error) {
-        return setSubmitError(status.error);
-      }
-    }
+      try {
+        const isSaved = await doCloudSubmit(fetchForm.id, formattedValues);
+        if (!isSaved.success) {
+          throw isSaved.message;
+        }
 
-    const hasError = await onSubmit(formattedValues);
-    if (hasError) {
-      setSubmitError(hasError);
+        const hasError = await onSubmit(formattedValues);
+        if (hasError) {
+          throw hasError;
+        }
+      } catch (err) {
+        console.log(err);
+        setSubmitError(err);
+      }
     }
   };
 
@@ -75,7 +79,6 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
           initialValues={{}}
           validate={(values) => {
             const errors = validate(values, validations);
-            // console.log(errors);
             return errors;
           }}
           render={({ handleSubmit, submitting, invalid }) => (
@@ -92,7 +95,7 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
                 className='fetch-submit-button'
                 disabled={submitting || invalid}
               >
-                {fetchForm.submitText}
+                {submitting ? 'Saving...' : fetchForm.submitText}
               </button>
             </form>
           )}

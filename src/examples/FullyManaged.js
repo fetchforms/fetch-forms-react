@@ -6,8 +6,7 @@ const FullyManaged = () => {
 
   const onSubmit = async (values) => {
     await sleep(1000);
-    // return "We couldn't save your form."";
-
+    // Your logic here
     console.log('return values', values);
   };
   return (
@@ -21,7 +20,7 @@ const FullyManaged = () => {
         <br />
         <div>
           <FetchForm
-            slug='fcd4ca8b-12d4-4b8c-882d-00144d54d02c'
+            slug='6fa85752-e237-493d-9c63-c441049cb53d'
             onSubmit={onSubmit}
           />
         </div>

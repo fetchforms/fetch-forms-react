@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import FetchLabel from '../elements/FetchLabel';
+import FetchLabel from '../FetchLabel';
 
 const FetchFormRadio = ({ label, options, fieldName, html }) => {
   const [checked, setChecked] = useState('');
@@ -12,6 +12,8 @@ const FetchFormRadio = ({ label, options, fieldName, html }) => {
           <div className='input-group-field'>
             <input
               {...html}
+              value={option.value}
+              id={option.value}
               onClick={(e) => setChecked(e.target.value)}
               className={`fetch-radio ${
                 checked === option.value ? 'checked' : ''

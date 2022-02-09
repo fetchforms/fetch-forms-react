@@ -1,5 +1,5 @@
 import React from 'react';
-import FetchLabel from '../elements/FetchLabel';
+import FetchLabel from '../FetchLabel';
 
 const FetchFormCheckbox = ({ label, html }) => {
   return (
