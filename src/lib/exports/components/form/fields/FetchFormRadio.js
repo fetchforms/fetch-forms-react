@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import RadioField from '../elements/RadioField';
+import { useState } from 'react';
 import FetchLabel from '../elements/FetchLabel';
 
-const FetchFormRadio = ({ field, html }) => {
+const FetchFormRadio = ({ label, options, fieldName, html }) => {
   const [checked, setChecked] = useState('');
 
   return (
     <div className='radio-group'>
-      <FetchLabel label={field.label} name={field.fieldName} />
-      {field.options.map((option) => (
+      <FetchLabel label={label} name={fieldName} />
+      {options.map((option) => (
         <div className='fetch-input-group' key={option.value}>
           <div className='input-group-field'>
-            <RadioField
-              html={{ ...html, value: option.value, id: option.value }}
-              isChecked={checked === option.value}
-              updateChecked={setChecked}
+            <input
+              {...html}
+              onClick={(e) => setChecked(e.target.value)}
+              className={`fetch-radio ${
+                checked === option.value ? 'checked' : ''
+              }`}
             />
           </div>
           <div className='input-group-label'>

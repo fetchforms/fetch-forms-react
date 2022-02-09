@@ -2,11 +2,11 @@ import React from 'react';
 import TextareaField from '../elements/TextareaField';
 import FetchLabel from '../elements/FetchLabel';
 
-const FetchFormTextarea = ({ field, html }) => {
+const FetchFormTextarea = ({ label, html }) => {
   return (
     <>
-      <FetchLabel label={field.label} name={field.name} />
-      <TextareaField html={html} preload={field.value} />
+      <FetchLabel label={label} name={html.name} />
+      <textarea {...html} className='fetch-input'></textarea>
     </>
   );
 };

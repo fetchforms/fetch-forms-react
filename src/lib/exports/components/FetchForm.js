@@ -4,12 +4,13 @@ import useFetchForms from '../hooks/useFetchForms';
 import FetchFormItem from './form/FetchFormItem';
 import { validate } from './form/Validations';
 import '../styles/index.scss';
+import useCloudSave from '../hooks/useCloudSave';
 
 const FetchForm = ({ slug, showFormError, onSubmit }) => {
   const [fetchForm, loading, error] = useFetchForms(slug);
+  const { status, createSubmission } = useCloudSave();
   const [validations, setValidations] = useState({});
   const [submitError, setSubmitError] = useState(false);
-  // const [submissionId, setSubmissionId] = useState(null);
 
   useEffect(() => {
     if (fetchForm) {
@@ -43,48 +44,55 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
       }
     }
 
-    // TODO: submit to fetch forms if cloudsave is enabled
-    // return setSubmitError('Age requires a valid number to be set');
+    if (fetchForm.cloudSave) {
+      await createSubmission(fetchForm.id, formattedValues);
+      if (status.error) {
+        return setSubmitError(status.error);
+      }
+    }
+
     const hasError = await onSubmit(formattedValues);
     if (hasError) {
       setSubmitError(hasError);
     }
   };
 
-  const errorMessage = (message) => {
+  const ErrorMessage = ({ message }) => {
     return (
       <div className='fetch-alert' role='alert'>
-        <span className='block sm:inline'>{message}</span>
+        {message}
       </div>
     );
   };
 
   return (
     <div className='fetch-form'>
-      {error && errorMessage(error)}
+      {!loading && error && <ErrorMessage message={error} />}
       {loading && 'Loading...'}
-      {fetchForm && (
+      {!loading && fetchForm && (
         <Form
           onSubmit={submitForm}
           initialValues={{}}
           validate={(values) => {
-            return validate(values, validations);
+            const errors = validate(values, validations);
+            // console.log(errors);
+            return errors;
           }}
-          render={({ handleSubmit, form, submitting, invalid }) => (
+          render={({ handleSubmit, submitting, invalid }) => (
             <form onSubmit={handleSubmit} noValidate>
-              {fetchForm.formItems.map((formItem, i) => (
+              {fetchForm.formItems.map((formItem) => (
                 <FetchFormItem
                   formItem={formItem}
-                  key={`${formItem.name}_${i}`}
+                  key={formItem.fieldHtml.id}
                 />
               ))}
-              {submitError && errorMessage(submitError)}
+              {submitError && <ErrorMessage message={submitError} />}
               <button
                 type='submit'
                 className='fetch-submit-button'
                 disabled={submitting || invalid}
               >
-                {form.submitText || 'Submit'}
+                {fetchForm.submitText}
               </button>
             </form>
           )}

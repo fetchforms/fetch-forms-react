@@ -12,16 +12,16 @@ const FullyManaged = () => {
   };
   return (
     <div className=''>
-      <FetchFormsProvider permission='ad784124b18825b417ab71426f13f050'>
+      <FetchFormsProvider permission='92a7a5221aef332efa00bd23012ad6b2'>
         <div className='text-3xl'>Managed Form</div>
         <p className='text-gray-500'>
           The easiest way to use Fetch Forms. Pass in a form slug and we'll do
-          the rest
+          the rest.
         </p>
         <br />
         <div>
           <FetchForm
-            slug='a6e92e44-fe5e-4018-b555-3ed9bd60fc70'
+            slug='fcd4ca8b-12d4-4b8c-882d-00144d54d02c'
             onSubmit={onSubmit}
           />
         </div>

@@ -14,20 +14,22 @@ const useFetchForms = (id, json) => {
       const endpoint = json ? `build/${id}` : `form/${id}`;
 
       try {
-        // console.log('auth', token);
-
-        const resp = await window.fetch(`http://localhost:8081/${endpoint}`, {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify(json)
-        });
+        const resp = await window.fetch(
+          `https://api.fetchforms.io/v1/${endpoint}`,
+          {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(json)
+          }
+        );
         const temp = await resp.json();
         // console.log('form from hook', temp);
-        if (resp.status !== 200 || !temp.success) {
+
+        if (!temp.success) {
           throw (
             temp.error ||
             (temp.error && temp.error.message) ||
@@ -36,13 +38,13 @@ const useFetchForms = (id, json) => {
         }
 
         setFetchForm(temp.data);
-        setLoading(false);
         setError(false);
+        setLoading(false);
       } catch (err) {
         console.error(err);
-        setFetchForm({});
-        setLoading(false);
+        setFetchForm(null);
         setError((err && err.message) || err);
+        setLoading(false);
       }
     };
 

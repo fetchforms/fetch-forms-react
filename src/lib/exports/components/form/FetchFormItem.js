@@ -3,50 +3,50 @@ import { Field } from 'react-final-form';
 import FetchFormCheckbox from './fields/FetchFormCheckbox';
 import FetchFormRadio from './fields/FetchFormRadio';
 import FetchFormSelect from './fields/FetchFormSelect';
-import FetchFormText from './fields/FetchFormText';
+import FetchFormInput from './fields/FetchFormInput';
 import FetchFormTextarea from './fields/FetchFormTextarea';
 
 const FetchFormItem = ({ formItem }) => {
-  // console.log('formData', formItem);
-
-  const chooseField = (field, input) => {
-    const html = {
-      ...field.fieldHtml,
-      ...input
-    };
-
-    switch (field.fieldType) {
+  const chooseField = (input) => {
+    switch (formItem.fieldType) {
       case 'select':
-        return <FetchFormSelect field={field} html={html} />;
+        return (
+          <FetchFormSelect
+            label={formItem.label}
+            options={formItem.options}
+            html={input}
+          />
+        );
       case 'checkbox':
-        return <FetchFormCheckbox field={field} html={html} />;
+        return <FetchFormCheckbox label={formItem.label} html={input} />;
       case 'radio':
-        return <FetchFormRadio field={field} html={html} />;
+        return (
+          <FetchFormRadio
+            label={formItem.label}
+            options={formItem.options}
+            fieldName={formItem.fieldName}
+            html={input}
+          />
+        );
       case 'textarea':
-        return <FetchFormTextarea field={field} html={html} />;
+        return <FetchFormTextarea label={formItem.label} html={input} />;
       default:
-        return <FetchFormText field={field} html={html} />;
+        return <FetchFormInput label={formItem.label} html={input} />;
     }
   };
 
   return (
     <div className='fetch-form-item'>
-      {/* {formItem.fields.map((field, i) => ( */}
-      <Field
-        name={formItem.name}
-        type={formItem.fieldType}
-        value={formItem.fieldHtml.value}
-      >
+      <Field {...formItem.fieldHtml}>
         {({ input, meta }) => (
           <>
-            {chooseField(formItem, input)}
+            {chooseField(input)}
             {meta.error && meta.touched && (
               <div className='fetch-error-msg'>{meta.error}</div>
             )}
           </>
         )}
       </Field>
-      {/* ))} */}
     </div>
   );
 };

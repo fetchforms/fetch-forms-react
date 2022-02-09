@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "final-form": "^4.20.4",
-    "react-final-form": "^6.5.7"
+    "react-final-form": "^6.5.7",
+    "react-number-format": "^4.9.1"
   },
   "scripts": {
     "start": "craco start",

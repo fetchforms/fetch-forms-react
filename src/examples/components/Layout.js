@@ -2,7 +2,7 @@ import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const Layout = () => (
-  <div className='bg-gray-200 h-screen w-screen'>
+  <div className='bg-gray-200 min-h-screen w-screen'>
     <main>
       <div className='h-48 bg-purple-500 '>
         <div className='container mx-auto max-w-4xl pt-12'>
@@ -27,7 +27,7 @@ const Layout = () => (
           </ul>
         </div>
       </div>
-      <div className='container mx-auto max-w-4xl -m-12'>
+      <div className='container mx-auto max-w-4xl -m-12 pb-12'>
         <div className='rounded-md bg-white border-gray-300 border p-6 drop-shadow-md'>
           <Outlet />
         </div>

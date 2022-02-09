@@ -25,6 +25,7 @@ const HookForm = () => {
     console.log('Failed:', errorInfo);
   };
 
+  // custom form validation
   const validate = (fieldType, validations) => {
     console.log('validate');
     const rules = validations.map((validation) => {

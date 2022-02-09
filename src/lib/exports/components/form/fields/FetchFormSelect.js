@@ -1,16 +1,18 @@
 import React from 'react';
-import SelectField from '../elements/SelectField';
 import FetchLabel from '../elements/FetchLabel';
 
-const FetchFormSelect = ({ field, html }) => {
+const FetchFormSelect = ({ label, options, html }) => {
   return (
     <>
-      <FetchLabel label={field.label} name={field.name} />
-      <SelectField
-        html={html}
-        initialValue={field.initialValue}
-        options={field.options}
-      />
+      <FetchLabel label={label} name={html.name} />
+      <select {...html} className={`fetch-input`}>
+        <option key='initial_default' value=''></option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </>
   );
 };
