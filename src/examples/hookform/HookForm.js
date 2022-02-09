@@ -14,9 +14,7 @@ import './styles.css';
 
 const HookForm = () => {
   // FetchFormProvider needs to wrap this component
-  const [fetchForm, loading, error] = useFetchForms(
-    'fcd4ca8b-12d4-4b8c-882d-00144d54d02c'
-  );
+  const [fetchForm, loading, error] = useFetchForms('FORM_SLUG');
 
   const onFinish = (values) => {
     console.log('Success:', values);
