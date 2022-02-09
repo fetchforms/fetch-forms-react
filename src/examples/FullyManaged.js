@@ -20,7 +20,7 @@ const FullyManaged = () => {
         <br />
         <div>
           <FetchForm
-            slug='6fa85752-e237-493d-9c63-c441049cb53d'
+            slug='fcd4ca8b-12d4-4b8c-882d-00144d54d02c'
             onSubmit={onSubmit}
           />
         </div>

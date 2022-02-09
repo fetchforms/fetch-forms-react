@@ -46,27 +46,3 @@ export const validate = (values, validation) => {
   }
   return errors;
 };
-
-export const validateField = (value, validations) => {
-  console.log(value, validations);
-  for (let i = 0; i < validations.length; i++) {
-    const validation = validations[i];
-
-    if (validation.rule === 'regex' && !validRegex(validation.limit, value)) {
-      return validation.message;
-    } else if (
-      validation.rule === 'min' &&
-      !biggerThan(validation.limit, value)
-    ) {
-      return validation.message;
-    } else if (
-      validation.rule === 'max' &&
-      !smallerTan(validation.limit, value)
-    ) {
-      return validation.message;
-    } else if (validation.rule === 'required' && !hasValue(value)) {
-      return validation.message;
-    }
-  }
-  return undefined;
-};

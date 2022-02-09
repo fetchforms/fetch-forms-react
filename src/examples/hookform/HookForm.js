@@ -7,14 +7,15 @@ import {
   Checkbox,
   Select,
   Radio,
-  InputNumber
+  InputNumber,
+  Alert
 } from 'antd';
 import './styles.css';
 
 const HookForm = () => {
   // FetchFormProvider needs to wrap this component
   const [fetchForm, loading, error] = useFetchForms(
-    'a6e92e44-fe5e-4018-b555-3ed9bd60fc70'
+    'fcd4ca8b-12d4-4b8c-882d-00144d54d02c'
   );
 
   const onFinish = (values) => {
@@ -26,8 +27,7 @@ const HookForm = () => {
   };
 
   // custom form validation
-  const validate = (fieldType, validations) => {
-    console.log('validate');
+  const createValidationRules = (fieldType, validations) => {
     const rules = validations.map((validation) => {
       if (validation.rule === 'required') {
         return { required: true, message: validation.message };
@@ -40,16 +40,15 @@ const HookForm = () => {
         return {
           [validation.rule]: validation.limit,
           message: validation.message,
-          type: fieldType
+          type: fieldType === 'number' ? 'number' : 'string'
         };
       }
     });
-
-    // console.log('rules', rules);
+    console.log('rules', rules);
     return rules;
   };
 
-  const selectField = (item) => {
+  const findFieldType = (item) => {
     switch (item.fieldType) {
       case 'select':
         const { Option } = Select;
@@ -71,7 +70,7 @@ const HookForm = () => {
       case 'number':
         return <InputNumber key={item.name} />;
       default:
-        return <Input key={item.name} />;
+        return <Input {...item.fieldHtml} key={item.name} />;
     }
   };
 
@@ -83,7 +82,7 @@ const HookForm = () => {
         with custom components and layouts
       </p>
       <br />
-      {error && <div>Error: {error.message}</div>}
+      {error && <Alert message={error} type='error' showIcon />}
 
       {loading ? (
         <div>Loading...</div>
@@ -91,11 +90,12 @@ const HookForm = () => {
         fetchForm && (
           <Form
             name='HookForm'
-            labelCol={{ span: 6 }}
+            labelCol={{ span: 4 }}
             wrapperCol={{ span: 18 }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete='off'
+            noValidate
           >
             {fetchForm.formItems.map((item, i) => (
               <Form.Item
@@ -105,7 +105,7 @@ const HookForm = () => {
                 valuePropName={
                   item.fieldType === 'checkbox' ? 'checked' : 'value'
                 }
-                rules={validate(item.fieldType, item.validation)}
+                rules={createValidationRules(item.fieldType, item.validation)}
                 validateTrigger='onBlur'
               >
                 {item.fieldType === 'radio' ? (
@@ -117,7 +117,7 @@ const HookForm = () => {
                     ))}
                   </Radio.Group>
                 ) : (
-                  selectField(item)
+                  findFieldType(item)
                 )}
               </Form.Item>
             ))}
@@ -128,7 +128,7 @@ const HookForm = () => {
               }}
             >
               <Button type='primary' htmlType='submit'>
-                {fetchForm.submitText || 'Submit'}
+                {fetchForm.submitText}
               </Button>
             </Form.Item>
           </Form>
