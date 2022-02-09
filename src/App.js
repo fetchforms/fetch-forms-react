@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import FullyManaged from './examples/FullyManaged';
-import HookParent from './examples/hookform/Parent';
+import ManagedForm from './examples/ManagedForm';
+import HookParent from './examples/hookForm/Parent';
 import Layout from './examples/components/Layout';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route index element={<FullyManaged />} />
+          <Route index element={<ManagedForm />} />
           <Route path='hookForm' element={<HookParent />} />
         </Route>
       </Routes>

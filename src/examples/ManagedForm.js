@@ -1,7 +1,7 @@
 import React from 'react';
 import { FetchForm, FetchFormsProvider } from '../lib/index';
 
-const FullyManaged = () => {
+const ManagedForm = () => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const onSubmit = async (values) => {
@@ -29,4 +29,4 @@ const FullyManaged = () => {
   );
 };
 
-export default FullyManaged;
+export default ManagedForm;
