@@ -4,7 +4,7 @@ export const getFormat = (formatStr, fieldType) => {
 
   if (!formatStr && fieldType === 'number') {
     numerical = {};
-    numerical.thousandSeparator = true;
+    numerical.thousandSeparator = ',';
     numerical.inputMode = 'numeric';
   }
 
@@ -16,10 +16,10 @@ export const getFormat = (formatStr, fieldType) => {
   numerical = {};
 
   if (formatStr.includes('#')) {
-    numerical.displayType = 'text';
     numerical.format = formatStr;
   } else if (formatStr === 'currency') {
-    numerical.format = formatCurrency;
+    numerical.thousandSeparator = ',';
+    numerical.prefix = '$';
     numerical.inputMode = 'numeric';
   } else {
     css = formatStr;
@@ -28,8 +28,3 @@ export const getFormat = (formatStr, fieldType) => {
 
   return { numerical, css };
 };
-
-function formatCurrency(val) {
-  const withCommas = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  return `$${withCommas}`;
-}

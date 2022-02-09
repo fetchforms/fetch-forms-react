@@ -1,37 +1,36 @@
 import React from 'react';
-import InputField from '../elements/InputField';
 import FetchLabel from '../elements/FetchLabel';
 import { getFormat } from '../Formats';
-// import NumberFormat from 'react-number-format';
+import NumberFormat from 'react-number-format';
 
-const FetchFormInput = ({ label, html }) => {
-  // const customFormat = getFormat(field.format, html.type);
-  // // console.log(customFormat);
+const FetchFormInput = ({ label, html, format }) => {
+  const { numerical, css } = getFormat(format, html.type);
 
-  //  if (customFormat.numerical) {
-  //    return (
-  //      <NumberFormat
-  //        {...html}
-  //        value={preload}
-  //        className={`fetch-input ${customFormat.css}`}
-  //        format={customFormat.numerical.format}
-  //      />
-  //    );
-  //  }
+  if (numerical) {
+    console.log(html.name, numerical);
+  }
+
   return (
     <>
       <FetchLabel label={label} name={html.name} />
-      {/* {customFormat.numerical ? (
+      {numerical ? (
         <NumberFormat
-          customInput={InputField}
-          html={html}
-          preload={field.value}
-          format={customFormat.numerical.format}
-          cssFormat={customFormat.css}
+          {...numerical}
+          name={html.name}
+          value={html.value}
+          onBlur={html.onBlur}
+          onFocus={html.onFocus}
+          onChange={(value) => html.onChange(value)}
+          onValueChange={({ formattedValue }) => html.onChange(formattedValue)}
+          className={`fetch-input ${css}`}
         />
-      ) : ( */}
-      <input {...html} className={`fetch-input`} />
-      {/* )} */}
+      ) : (
+        <input
+          {...html}
+          className={`fetch-input ${css}`}
+          inputMode={html.type}
+        />
+      )}
     </>
   );
 };

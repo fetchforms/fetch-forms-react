@@ -31,7 +31,13 @@ const FetchFormItem = ({ formItem }) => {
       case 'textarea':
         return <FetchFormTextarea label={formItem.label} html={input} />;
       default:
-        return <FetchFormInput label={formItem.label} html={input} />;
+        return (
+          <FetchFormInput
+            label={formItem.label}
+            html={input}
+            format={formItem.format}
+          />
+        );
     }
   };
 
