@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ManagedForm from './examples/ManagedForm';
 import HookParent from './examples/hookForm/Parent';

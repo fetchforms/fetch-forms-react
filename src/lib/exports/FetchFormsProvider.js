@@ -1,9 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import React from 'react';
 
-export const FormsContext = createContext({});
+export const FormsContext = React.createContext({});
 
 export const FetchFormsProvider = ({ permission, children }) => {
-  const [token] = useState(permission);
+  const [token] = React.useState(permission);
 
   return (
     <FormsContext.Provider value={token}>{children}</FormsContext.Provider>
@@ -11,5 +11,5 @@ export const FetchFormsProvider = ({ permission, children }) => {
 };
 
 export const usePermission = () => {
-  return useContext(FormsContext);
+  return React.useContext(FormsContext);
 };

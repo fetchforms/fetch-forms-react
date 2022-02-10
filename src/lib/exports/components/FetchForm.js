@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Form } from 'react-final-form';
 import useFetchForms from '../hooks/useFetchForms';
 import FetchFormItem from './form/FetchFormItem';
 import { validate } from '../scripts/Validations';
-import '../styles/index.scss';
+import '../../../lib_styles/index.scss';
 
 const FetchForm = ({ slug, showFormError, onSubmit }) => {
   const [fetchForm, loading, error, doCloudSubmit] = useFetchForms(slug);
-  const [validations, setValidations] = useState({});
-  const [submitError, setSubmitError] = useState(false);
+  const [validations, setValidations] = React.useState({});
+  const [submitError, setSubmitError] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (fetchForm) {
       setValidations(
         fetchForm.formItems.map((item) => ({
@@ -21,7 +21,7 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
     }
   }, [fetchForm]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (showFormError) {
       setSubmitError(showFormError);
     }

@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React from 'react';
 import FetchLabel from '../FetchLabel';
 
 const FetchFormRadio = ({ label, options, fieldName, html }) => {
-  const [checked, setChecked] = useState('');
+  const [checked, setChecked] = React.useState('');
 
   return (
     <div className='radio-group'>
