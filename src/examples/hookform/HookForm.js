@@ -14,7 +14,9 @@ import './styles.css';
 
 const HookForm = () => {
   // FetchFormProvider needs to wrap this component
-  const [fetchForm, loading, error] = useFetchForms('FORM_SLUG');
+  const [fetchForm, loading, error] = useFetchForms(
+    process.env.REACT_APP_FF_FORM_ID
+  );
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -42,10 +44,10 @@ const HookForm = () => {
         };
       }
     });
-    console.log('rules', rules);
     return rules;
   };
 
+  // Find the appropriate field type
   const findFieldType = (item) => {
     switch (item.fieldType) {
       case 'select':

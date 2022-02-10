@@ -11,7 +11,7 @@ const ManagedForm = () => {
   };
   return (
     <div className=''>
-      <FetchFormsProvider permission='API_TOKEN'>
+      <FetchFormsProvider permission={process.env.REACT_APP_FF_TOKEN}>
         <div className='text-3xl'>Managed Form</div>
         <p className='text-gray-500'>
           The easiest way to use Fetch Forms. Pass in a form slug and we'll do
@@ -19,7 +19,10 @@ const ManagedForm = () => {
         </p>
         <br />
         <div>
-          <FetchForm slug='FORM_SLUG' onSubmit={onSubmit} />
+          <FetchForm
+            slug={process.env.REACT_APP_FF_FORM_ID}
+            onSubmit={onSubmit}
+          />
         </div>
       </FetchFormsProvider>
     </div>

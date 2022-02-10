@@ -4,7 +4,7 @@ import HookForm from './HookForm';
 
 const HookParent = () => {
   return (
-    <FetchFormsProvider permission='API_TOKEN'>
+    <FetchFormsProvider permission={process.env.REACT_APP_FF_TOKEN}>
       <HookForm />
     </FetchFormsProvider>
   );

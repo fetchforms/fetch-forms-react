@@ -27,7 +27,6 @@ const useFetchForms = (id, json) => {
           }
         );
         const temp = await resp.json();
-        // console.log('form from hook', temp);
 
         if (!temp.success) {
           throw (
@@ -74,7 +73,6 @@ const useFetchForms = (id, json) => {
         return { success: true };
       }
       const errorResp = await resp.json();
-      // console.log('form from hook', temp);
       throw (
         (errorResp.error && errorResp.error.message) ||
         errorResp.error ||
