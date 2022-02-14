@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ManagedForm from './examples/ManagedForm';
-import HookParent from './examples/hookForm/Parent';
+import HookParent from './examples/hookform/Parent';
 import Layout from './examples/components/Layout';
 
 function App() {

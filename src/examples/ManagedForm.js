@@ -2,11 +2,8 @@ import React from 'react';
 import { FetchForm, FetchFormsProvider } from '../lib/index';
 
 const ManagedForm = () => {
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   const onSubmit = async (values) => {
-    await sleep(1000);
-    // Your logic here
+    /* return 'There was an error submitting the form'; */
     console.log('return values', values);
   };
   return (

@@ -33,28 +33,28 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
     const formattedValues = {
       ...values
     };
-    const keys = Object.keys(values);
-    for (let i = 0; i < keys.length; i++) {
-      if (typeof values[keys[i]] !== 'boolean' && !isNaN(values[keys[i]])) {
-        formattedValues[keys[i]] = parseInt(values[keys[i]]);
-      } else {
-        formattedValues[keys[i]] = values[keys[i]];
-      }
-    }
+    const valueKeys = Object.keys(values);
 
-    if (fetchForm.cloudSave) {
-      try {
-        const isSaved = await doCloudSubmit(fetchForm.id, formattedValues);
-        if (!isSaved.success) {
-          throw isSaved.message;
-        }
-      } catch (err) {
-        console.log(err);
-        setSubmitError(err);
+    for (let i = 0; i < valueKeys.length; i++) {
+      const fieldType = fetchForm.formItems.find(
+        (item) => item.name === valueKeys[i]
+      );
+
+      if (fieldType.type === 'number') {
+        formattedValues[valueKeys[i]] = parseInt(values[valueKeys[i]]);
+      } else {
+        formattedValues[valueKeys[i]] = values[valueKeys[i]];
       }
     }
 
     try {
+      if (fetchForm.cloudSave) {
+        const isSaved = await doCloudSubmit(fetchForm.id, formattedValues);
+        if (!isSaved.success) {
+          throw isSaved.message;
+        }
+      }
+
       const hasError = await onSubmit(formattedValues);
       if (hasError) {
         throw hasError;
