@@ -41,7 +41,6 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
         formattedValues[keys[i]] = values[keys[i]];
       }
     }
-    console.log(formattedValues);
 
     if (fetchForm.cloudSave) {
       try {
@@ -49,15 +48,20 @@ const FetchForm = ({ slug, showFormError, onSubmit }) => {
         if (!isSaved.success) {
           throw isSaved.message;
         }
-
-        const hasError = await onSubmit(formattedValues);
-        if (hasError) {
-          throw hasError;
-        }
       } catch (err) {
         console.log(err);
         setSubmitError(err);
       }
+    }
+
+    try {
+      const hasError = await onSubmit(formattedValues);
+      if (hasError) {
+        throw hasError;
+      }
+    } catch (err) {
+      console.log(err);
+      setSubmitError(err);
     }
   };
 
