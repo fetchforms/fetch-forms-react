@@ -1,18 +1,15 @@
 # Fetch Forms for React
 
 ### What is Fetch Forms?
-Fetch Forms is a headless forms solution and form builder designed to help developers build forms and connect data.
-
-### Prerequisites
-1. [Configure a form](https://www.fetchforms.io/docs/configuring-a-form)
-2. [Create an API token](https://www.fetchforms.io/account/api-details)
+Fetch Forms is a headless forms builder designed to help developers build forms and connect data.
 
 ## Documentation
-- [Examples](https://github.com/fetchforms/react-client/tree/main/src/examples)
+- [Full code examples](https://github.com/fetchforms/react-example-app)
+- [Doc Overview](https://www.fetchforms.io/docs/overview)
 - [The Fetch Form object](https://www.fetchforms.io/docs/fetch-form-object)
 - [Storing forms in source code](https://www.fetchforms.io/docs/build-a-form)
 
-### Install the client
+### Add the package to your app
 ```sh
 npm install @fetchforms/react
 ```
@@ -43,10 +40,10 @@ const MyFetchForm = () => {
 ```
 
 ### Using hooks
-The `useFetchForms` hook allows you to display your forms in more complex layouts. See the [hook form example](https://github.com/fetchforms/react-client/tree/main/src/examples/hookform) to see an implementation using Ant.Design form element.
+The `useFetchForms` hook allows you to display your forms in more complex layouts. See the [custom form example](https://github.com/fetchforms/react-example-app/tree/main/src/examples) to see an implementation using Ant.Design form element.
 
 ```jsx
-import { useFetchForms, FetchFormsProvider } from "@fetchforms/react";
+import { useFetchForms } from "@fetchforms/react";
 
 const CustomFormLayout = () => {
     const [fetchForm, loading, error] = useFetchForms('FORM_SLUG');
@@ -64,7 +61,7 @@ const CustomFormLayout = () => {
             ) : (
                 fetchForm && (
                     <form
-                        name='HookForm'
+                        name='customForm'
                         onSubmit={onFinish}
                     >
                         {fetchForm.formItems.map((item, i) => {
