@@ -27,11 +27,15 @@ const MyFetchForm = () => {
     const onSubmit = async (values) => {
         console.log('values', values);
     };
+    const onLoad = async (values) => {
+        console.log('values', values);
+    };
 
     return (
         <FetchForm
             slug="FORM_SLUG"
             onSubmit={onSubmit}
+            onLoad={onLoad}
         />
     );
 };
