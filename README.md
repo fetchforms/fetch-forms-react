@@ -7,7 +7,7 @@ Fetch Forms is a headless forms builder designed to help developers build forms 
 - [Full code examples](https://github.com/fetchforms/react-example-app)
 - [Doc Overview](https://www.fetchforms.io/docs/overview)
 - [The Fetch Form object](https://www.fetchforms.io/docs/fetch-form-object)
-- [Storing forms in source code](https://www.fetchforms.io/docs/build-a-form)
+- [Storing forms in source code](www.fetchforms.io/docs/source-code-forms)
 
 ### Add the package to your app
 ```sh
@@ -21,7 +21,7 @@ yarn add @fetchforms/react
 Using the `<FetchForm />` component is the fastest way to see Fetch Forms in action. This component will handle client-side validation, data parsing, and saving to the cloud if your form has `cloudSave` set. 
 
 ```jsx
-import { FetchForm, FetchFormsProvider } from "@fetchforms/react";
+import { FetchForm } from "@fetchforms/react";
 
 const MyFetchForm = () => {
     const onSubmit = async (values) => {
@@ -29,12 +29,10 @@ const MyFetchForm = () => {
     };
 
     return (
-        <FetchFormsProvider permission="API_TOKEN">
-            <FetchForm
-                slug="FORM_SLUG"
-                onSubmit={onSubmit}
-            />
-        </FetchFormsProvider>
+        <FetchForm
+            slug="FORM_SLUG"
+            onSubmit={onSubmit}
+        />
     );
 };
 ```
@@ -101,13 +99,5 @@ const CustomFormLayout = () => {
             )}
       </>
     )
-}
-
-const App = () => {
-    return (
-        <FetchFormsProvider permission="API_TOKEN">
-            <CustomFormLayout />
-        </FetchFormsProvider>
-    );
 }
 ```
