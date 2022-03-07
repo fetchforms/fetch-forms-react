@@ -1,6 +1,6 @@
 {
   "name": "@fetchforms/react",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "The React client SDK for Fetch Forms",
   "author": "lukefrogger",
   "license": "MIT",
