@@ -5,16 +5,15 @@ import FetchFormItem from './form/FetchFormItem';
 import { validate } from '../scripts/Validations';
 import '../../../lib_styles/index.scss';
 
-const FetchForm = ({ slug, showFormError, onSubmit, onFormData }) => {
+const FetchForm = ({ slug, showFormError, onSubmit, onLoad }) => {
   const [fetchForm, loading, error, doCloudSubmit] = useFetchForms(slug);
   const [validations, setValidations] = React.useState({});
   const [submitError, setSubmitError] = React.useState(false);
 
   React.useEffect(() => {
     if (fetchForm) {
-      if (onFormData) {
-        console.log('formdata', onFormData);
-        onFormData(fetchForm);
+      if (onLoad) {
+        onLoad(fetchForm);
       }
 
       setValidations(
@@ -24,7 +23,7 @@ const FetchForm = ({ slug, showFormError, onSubmit, onFormData }) => {
         }))
       );
     }
-  }, [fetchForm, onFormData]);
+  }, [fetchForm, onLoad]);
 
   React.useEffect(() => {
     if (showFormError) {
