@@ -13,7 +13,8 @@ const FetchForm = ({ slug, showFormError, onSubmit, onLoad }) => {
   React.useEffect(() => {
     if (fetchForm) {
       if (onLoad) {
-        onLoad(fetchForm);
+        const { formItems, ...noFields } = fetchForm;
+        onLoad(noFields);
       }
 
       setValidations(
